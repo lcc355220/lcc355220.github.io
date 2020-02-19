@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      Golang 学习笔记(三) | L.C.Chao的博客
+      Golang 学习笔记(六) | L.C.Chao的博客
     
   </title>
   <meta name="author" content="L.C.Chao">
@@ -166,7 +166,7 @@
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《Golang 学习笔记(三)》
+			当前文章&nbsp;:&nbsp;《Golang 学习笔记(六)》
 		
 	</p>
 
@@ -285,8 +285,8 @@
 	<div class="article-title">
 		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 		
-	<a href="/2020/01/01/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/" itemprop="url">
-		Golang 学习笔记(三)
+	<a href="/2020/02/19/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E5%85%AD)/" itemprop="url">
+		Golang 学习笔记(六)
 	</a>
 
 	</div>
@@ -299,9 +299,9 @@
 
 	发布于
 
-	<a href="/2020/01/01/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/" itemprop="url">
-		<time datetime="2020-01-01T09:12:05.751Z" itemprop="datePublished">
-	  		2020-01-01
+	<a href="/2020/02/19/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E5%85%AD)/" itemprop="url">
+		<time datetime="2020-02-19T07:11:14.153Z" itemprop="datePublished">
+	  		2020-02-19
 	  </time>
 	</a>
 	&nbsp;
@@ -317,9 +317,9 @@
 
 	更新于
 
-	<a href="/2020/01/01/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/" itemprop="url">
-		<time datetime="2020-01-01T09:12:05.751Z" itemprop="dateUpdated">
-	  		2020-01-01
+	<a href="/2020/02/19/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E5%85%AD)/" itemprop="url">
+		<time datetime="2020-02-19T07:11:14.153Z" itemprop="dateUpdated">
+	  		2020-02-19
 	  </time>
 	</a> 
 
@@ -334,12 +334,12 @@
 			Golang 学习笔记
 		</a>
 	
-		<a href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class=" ">
-			单元测试
+		<a href="/tags/RESTFUL/" class=" ">
+			RESTFUL
 		</a>
 	
-		<a href="/tags/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/" class=" ">
-			压力测试
+		<a href="/tags/http/" class=" ">
+			http
 		</a>
 	
 		
@@ -352,80 +352,16 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ol>
-<li>测试文件名必须是_test.go结尾的，这样在执行go test的时候才会执行到相应的代码</li>
-<li>你必须import testing这个包</li>
-<li>所有的测试用例函数必须是Test开头</li>
-<li>测试用例会按照源代码中写的顺序依次执行</li>
-<li>测试函数TestXxx(t *testing.T)只有一个参数 t， 可以用 t 记录错误或者是测试状态</li>
-<li>测试函数的格式：func TestXxx (t *testing.T)，Xxx部分可以为任意的字母数字的组合，但是首字母不能是小写字母[a-z]，例如Testintdiv是错误的函数名。</li>
-<li>函数中通过调用testing.T的Error, Errorf, FailNow, Fatal, FatalIf方法，说明测试不通过，调用Log方法用来记录测试的信息。</li>
-</ol>
-<h3 id="go-test命令的简单使用"><a href="#go-test命令的简单使用" class="headerlink" title="go test命令的简单使用"></a>go test命令的简单使用</h3><table>
-<thead>
-<tr>
-<th>常用命令</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>go test .</td>
-<td>运行当前目录下所有测试文件的测试函数，必须当前路径下有测试文件，子文件夹里的测试文件不会检测到</td>
-</tr>
-<tr>
-<td>go test ./…</td>
-<td>遍历运行当前目录下所有子文件夹内的测试函数</td>
-</tr>
-<tr>
-<td>go test filename_test.go</td>
-<td>运行当前目录下某个测试文件里的所有测试函数</td>
-</tr>
-<tr>
-<td>go test -run TestFuncName</td>
-<td>运行当前目录下某个特定测试函数</td>
-</tr>
-<tr>
-<td>go test ./service -run TestFuncName</td>
-<td>运行指定路径./service里的某个特定测试函数</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>常用标记</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-v</td>
-<td>显示通过的详细测试信息，默认只显示错误信息以及通过的概要</td>
-</tr>
-<tr>
-<td>-c</td>
-<td>生成用于运行测试的可执行文件，但不执行它。这个可执行文件会被命名为“pkg.test”，其中的“pkg”即为被测试代码包的导入路径的最后一个元素的名称。</td>
-</tr>
-<tr>
-<td>-i</td>
-<td>只是安装测试所依赖的包，不会编译执行</td>
-</tr>
-<tr>
-<td>-o</td>
-<td>指定编译生成的可执行文件名</td>
-</tr>
-</tbody></table>
-<h2 id="压力测试（性能测评）"><a href="#压力测试（性能测评）" class="headerlink" title="压力测试（性能测评）"></a>压力测试（性能测评）</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h3><ol>
-<li>文件名规则和单元测试一样</li>
-<li>压力测试函数必须遵循如下格式，其中XXX可以是任意字母数字的组合，但是首字母不能是小写字母，注意其参数是 testing.B，单元测试参数是 testing.T<br> func BenchmarkXXX(b *testing.B) { … }</li>
-<li>go test不会默认执行压力测试的函数，如果要执行压力测试需要带上参数-bench，语法:-bench=文件路径名，例如go test -bench=. 表示测试当前目录下全部的压力测试函数</li>
-<li>在压力测试用例中，有一个属性testing.B.N，它表示的是进行压力测试的次数。可以通过b.N = 1234来设置压力次数<br>如 webbench_test.go 压力测试函数</li>
-</ol>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> math</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="string">"testing"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Benchmark_Division</span><span class="params">(b *testing.B)</span></span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; b.N; i++ &#123; <span class="comment">//use b.N for looping</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        Division(<span class="number">4</span>, <span class="number">5</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Benchmark_TimeConsumingFunction</span><span class="params">(b *testing.B)</span></span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//与性能测试无关的代码</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    b.ResetTimer() <span class="comment">//重新开始时间</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    b.N=<span class="number">1234</span> <span class="comment">//自定义执行1234次</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; b.N; i++ &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        Division(<span class="number">4</span>, <span class="number">5</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    b.StopTimer() <span class="comment">//调用该函数停止压力测试的时间计数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//与性能测试无关的代码</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+		<h2 id="构建简单的HTTP服务"><a href="#构建简单的HTTP服务" class="headerlink" title="构建简单的HTTP服务"></a>构建简单的HTTP服务</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    http.HandleFunc(<span class="string">"/"</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">		fmt.Fprintf(w, <span class="string">"Hello World!"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">	&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">	http.HandleFunc(<span class="string">"/time"</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">		t := time.Now()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">		timeStr := fmt.Sprintf(<span class="string">"&#123;\"time\":\"%s\"&#125;"</span>, t)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">		w.Write([]<span class="keyword">byte</span>(timeStr))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">	&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">	http.ListenAndServe(<span class="string">":8080"</span>, <span class="literal">nil</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-<p>参考资料<br><a href="https://blog.csdn.net/H12590400327/article/details/80870849" target="_blank" rel="noopener">https://blog.csdn.net/H12590400327/article/details/80870849</a></p>
+
+
+<h2 id="构建简单的RESTFUL服务"><a href="#构建简单的RESTFUL服务" class="headerlink" title="构建简单的RESTFUL服务"></a>构建简单的RESTFUL服务</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	<span class="string">"encoding/json"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	<span class="string">"fmt"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">	<span class="string">"github.com/julienschmidt/httprouter"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">	<span class="string">"log"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">	<span class="string">"net/http"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Employee <span class="keyword">struct</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">	ID <span class="keyword">string</span> <span class="string">`json:"id"`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">	Name <span class="keyword">string</span> <span class="string">`json:"name"`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">	Age <span class="keyword">int</span> <span class="string">`json:"age"`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> employeeDB <span class="keyword">map</span>[<span class="keyword">string</span>]*Employee</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//模拟数据库数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span>  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">	employeeDB= <span class="keyword">map</span>[<span class="keyword">string</span>]*Employee&#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">	employeeDB[<span class="string">"Mike"</span>]=&amp;Employee&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">		ID:   <span class="string">"e-1"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">		Name: <span class="string">"Mike"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">		Age:  <span class="number">35</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">	employeeDB[<span class="string">"Rose"</span>]=&amp;Employee&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">		ID:   <span class="string">"e-2"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">		Name: <span class="string">"Rose"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">		Age:  <span class="number">45</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Index</span><span class="params">(w http.ResponseWriter,r *http.Request,_ httprouter.Params)</span></span>  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">	fmt.Fprint(w,<span class="string">"welcome!\n"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetEmployeeByName</span><span class="params">(w http.ResponseWriter,r *http.Request,ps httprouter.Params)</span></span>  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">	qName:=ps.ByName(<span class="string">"name"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">var</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">		ok <span class="keyword">bool</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">		info *Employee</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">		infoJson []<span class="keyword">byte</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">		err error</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">	)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">if</span> info,ok=employeeDB[qName];!ok&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">		w.Write([]<span class="keyword">byte</span>(<span class="string">"&#123;\"error\":\"Not Found\"&#125;"</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">if</span> infoJson,err=json.Marshal(info);err !=<span class="literal">nil</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">		w.Write([]<span class="keyword">byte</span>(fmt.Sprintf(<span class="string">"&#123;\"error\":,\"%s\"&#125;"</span>,err)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">	w.Write(infoJson)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">	router:=httprouter.New()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">	router.GET(<span class="string">"/"</span>,Index)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">	router.GET(<span class="string">"/employees/:name"</span>,GetEmployeeByName) <span class="comment">//自定义Restful路由</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">	log.Fatal(http.ListenAndServe(<span class="string">":8080"</span>,router))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
 	
 	</div>
 	
-	<div id="current-post-cover" data-scr="/img/1920x1080/3.jpg"></div>
+	<div id="current-post-cover" data-scr="/img/1920x1080/6.jpg"></div>
 
 	<!-- relate post, comment...-->
 	<div class="investment-container">
@@ -440,12 +376,8 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2020/01/12/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E5%9B%9B)/" title="Golang 学习笔记(四)" rel="prev">
-				&laquo;上一篇
-			</a>
 		
-		
-			<a href="/2019/12/26/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/" title="Golang 学习笔记(二)" rel="next">
+			<a href="/2020/01/30/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%94)/" title="Golang 学习笔记(五)" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -463,29 +395,6 @@
 <div class="relate-post">
 	
 		<ul>
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/19/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E5%85%AD)/" title="Golang 学习笔记(六)">
-								Golang 学习笔记(六)			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 19日, 2020				
-							</p>
-							<p class="relate-post-content">
-								构建简单的HTTP服务1func main()&#123;2    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) &#123;3		fmt.Fpri...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/19/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E5%85%AD)/" title="Golang 学习笔记(六)">				
-								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/1920x1080/6.jpg" alt="Golang 学习笔记(六)"/>
-							</a>
-						</div>
-					</li>											
-			
 			
 					<li>
 						<div class="relate-post-text">
@@ -538,6 +447,34 @@ agent.go
 							<a href="/2020/01/12/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E5%9B%9B)/" title="Golang 学习笔记(四)">				
 								
 								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/1920x1080/4.jpg" alt="Golang 学习笔记(四)"/>
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/01/01/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/" title="Golang 学习笔记(三)">
+								Golang 学习笔记(三)			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								一月 1日, 2020				
+							</p>
+							<p class="relate-post-content">
+								单元测试规则
+测试文件名必须是_test.go结尾的，这样在执行go test的时候才会执行到相应的代码
+你必须import testing这个包
+所有的测试用例函数必须是Test开头
+测试用例会按照源代码中写的顺序依次执行
+测试函数...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/01/01/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/" title="Golang 学习笔记(三)">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/1920x1080/3.jpg" alt="Golang 学习笔记(三)"/>
 							</a>
 						</div>
 					</li>											
